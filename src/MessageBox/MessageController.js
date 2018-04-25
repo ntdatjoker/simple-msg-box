@@ -46,7 +46,7 @@ export default class MessageController extends PureComponent {
             disabled={this.state.newMsg.length === 0}
             onClick={this.addNewMessage}
           >
-            <i className="fa fa-angle-double-right" /> Send
+            <i className="fa fa-paper-plane" /> Send
           </Button>
         </section>
       </ModalFooter>

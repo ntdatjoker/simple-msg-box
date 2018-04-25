@@ -28,6 +28,10 @@
   overflow-x: hidden;
 }
 
+.app-message-box .box-container {
+  min-height: 360px;
+}
+
 .app-message-box .modal-footer {
   background-color: #e6f1ff;
 }

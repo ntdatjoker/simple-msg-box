@@ -24,20 +24,18 @@ export default class MessageContainer extends PureComponent {
 
   renderMsg = (msg, index) => {
     return (
-      <Alert
-        color="primary"
-        className="text-right"
-        key={msg + index}
-      >
-        {msg}
-      </Alert>
+      <div key={msg + index} className="d-flex justify-content-end">
+        <Alert color="primary" className="text-right p-2 mb-2">{msg}</Alert>
+      </div>
     )
   }
 
   render() {
     return (
       <ModalBody>
-        {this.props.messages.map(this.renderMsg)}
+        <div className="box-container d-flex justify-content-end">
+          <div className="mt-auto">{this.props.messages.map(this.renderMsg)}</div>
+        </div>
         <div ref={msgEnd => this.msgEnd = msgEnd} />
       </ModalBody>
     )
