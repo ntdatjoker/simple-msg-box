@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { PureComponent } from 'react'
+import { Button } from 'reactstrap'
 
-class App extends Component {
+export default class App extends PureComponent {
+  state = {
+    isOpen: false
+  }
+
+  toggleModal = () => this.setState(({ isOpen }) => ({ isOpen: !isOpen }))
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <section className="w-100 h-100 p-3 d-flex justify-content-end">
+        <Button
+          outline
+          color="primary"
+          className="mt-auto mr-3 p-0 rounded-circle"
+          style={{ width: '60px', height: '60px' }}
+          onClick={this.toggleModal}
+        >
+          <i className="fa fa-lg fa-envelope" />
+        </Button>
+      </section>
+    )
   }
 }
-
-export default App;
