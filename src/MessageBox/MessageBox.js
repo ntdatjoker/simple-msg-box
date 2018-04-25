@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
+import { Modal, ModalHeader } from 'reactstrap'
+
+import './MessageBox.css'
+import MessageContainer from './MessageContainer'
+import MessageController from './MessageController'
 
 export default class MessageBox extends PureComponent {
 
@@ -9,18 +13,26 @@ export default class MessageBox extends PureComponent {
     toggleModal: PropTypes.func.isRequired
   }
 
+  state = {
+    messages: []
+  }
+
+  addMessage = newMessage => this.setState(({ messages }) => ({ messages: [...messages, newMessage] }))
+
+  onClose = async () => {
+    await this.props.toggleModal()
+    this.setState({ messages: [] })
+  }
+
   render() {
-    const { isOpen, toggleModal} = this.props
     return (
-      <Modal isOpen={isOpen} backdrop="static">
-        <ModalHeader toggle={toggleModal}>Modal title</ModalHeader>
-        <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggleModal}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={toggleModal}>Cancel</Button>
-        </ModalFooter>
+      <Modal isOpen={this.props.isOpen} backdrop="static" className="app-message-box">
+        <ModalHeader toggle={this.onClose}>
+          <img src="./logo.svg" className="user-image p-0 m-0" alt="Any Avatar" />
+          <span>User</span>
+        </ModalHeader>
+        <MessageContainer messages={this.state.messages} />
+        <MessageController addMessage={this.addMessage}/>
       </Modal>
     )
   }
