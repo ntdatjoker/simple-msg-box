@@ -25,11 +25,11 @@
   max-height: 400px;
   max-width: 500px;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .app-message-box .box-container {
   min-height: 360px;
+  max-width: 500px;
 }
 
 .app-message-box .modal-footer {
